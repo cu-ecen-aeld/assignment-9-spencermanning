@@ -1,14 +1,20 @@
+# ${bindir} = 		the staged version of /usr/bin/
+# ${sysconfdir} = 	the staged version of /etc/
+# ${PN} =           means the current recipe
+# PV =              Package version
+# ${SRCPV} =        
+
 # See https://git.yoctoproject.org/poky/tree/meta/files/common-licenses
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 # TODO: Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless access
-SRC_URI = "git://github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning;protocol=ssh;branch=master"
+SRC_URI = "git://github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning.git;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment 3 repo
-SRCREV = "0bc548bc160fc08af4eb4d0bf9ce0762de3f5018"
+SRCREV = "a51f12efec5ede1e1d8aac98b11f61264d248d3e"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
