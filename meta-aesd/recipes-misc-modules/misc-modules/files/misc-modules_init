@@ -1,6 +1,6 @@
 #!/bin/sh
-
-# Define the module and device
+# The majority of this file comes from the module_load and module_unload files within misc-modules in the Assignment 7 repo/LLD3 repo.
+# Use faulty module for the module and device
 module="faulty"
 device="faulty"
 
@@ -20,30 +20,40 @@ start)
 
     echo "Load the $module module, exit on failure"
     insmod "/lib/modules/5.15.124-yocto-standard/$module.ko" || exit 1
+
     echo "Get the major number (allocated with allocate_chrdev_region) from /proc/devices"
     major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
+
     if [ ! -z "${major}" ]; then
+
         echo "Remove any existing /dev node for /dev/${device}"
         rm -f "/dev/${device}"
+
         echo "Add a node for our device at /dev/${device} using mknod"
         mknod "/dev/${device}" c "$major" 0
+
         echo "Change group owner to ${group}"
         chgrp "$group" "/dev/${device}"
+
         echo "Change access mode to ${mode}"
         chmod "$mode" "/dev/${device}"
     else
         echo "No device found in /proc/devices for driver ${module} (this driver may not allocate a device)"
     fi
     echo "End of $module module load"
+    # Also load hello module
     modprobe hello || exit 1
     ;;
 
 stop)
-    # Use the module and device variables
-    echo "Stop the $module module and remove /dev/${device}"
+    # Unload the module and device
+    echo "Remove the $module module and /dev/${device} device"
     rmmod "$module" || exit 1
     rm -f "/dev/${device}"
-    echo "Module $module has been unloaded, and /dev/${device} has been removed."
+
+    echo "Module $module unloaded. /dev/${device} removed"
+    
+    # Also remove hello module
     rmmod hello
     ;;
 esac
