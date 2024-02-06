@@ -17,7 +17,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-spencermanning.git;pro
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-SRCREV = "455890034abc80cd01f34d5d5c4c2895014091fa"
+SRCREV = "84afd956084a98406acbac9d666ad08aac1aabb4"
 
 S = "${WORKDIR}/git/scull"
 
