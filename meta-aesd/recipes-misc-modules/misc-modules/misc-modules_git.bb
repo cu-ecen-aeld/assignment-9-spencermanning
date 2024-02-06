@@ -40,7 +40,7 @@ do_compile () {
 	oe_runmake
 }
 
-KERNEL_VERSION = "5.15.124-yocto-standard"
+# KERNEL_VERSION = "5.15.124-yocto-standard"
 
 do_install () {
 	# TODO: Install your binaries/scripts here.
