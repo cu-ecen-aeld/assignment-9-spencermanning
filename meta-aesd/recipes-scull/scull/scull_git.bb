@@ -31,6 +31,7 @@ INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME:${PN} = "scull_init"
 
 FILES:${PN} += "${sysconfdir}/*"
+FILES:${PN} += "${base_libdir}/modules/5.15.18"
 
 do_configure () {
 	:
