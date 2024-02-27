@@ -10,20 +10,21 @@
 #   LICENSE
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+# LIC_FILES_CHKSUM = "file://../LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 
 # Has to be github.com/ and not github.com:
 SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning.git;protocol=ssh;branch=master"
 
+# KEEP THIS UP TO DATE WITH ASY3
+SRCREV = "7be8f968f89d86488ad303fbdbdf62042b59fe1c"
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-# KEEP THIS UP TO DATE WITH ASY3
-SRCREV = "901bdfbc6f2804469b531d003fd8995d66dbe011"
 
 S = "${WORKDIR}/git/aesd-char-driver"
 
 inherit module
 
-EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}"
+EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver"
 EXTRA_OEMAKE += "KERNELDIR=${STAGING_KERNEL_DIR}"
 
 inherit update-rc.d
@@ -40,9 +41,8 @@ do_configure () {
 }
 
 do_compile () {
-    # echo "___________________________Current working directory: $(pwd)"
-    echo "___________________________Blha: ${WORKDIR}"
-	oe_runmake
+    # NEED to include the "-C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver" stuff so the aesd-char-driver Makefile can be found!
+    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver
 }
 
 # KERNEL_VERSION = "5.15.124-yocto-standard"
@@ -59,8 +59,8 @@ do_install () {
 	install -d ${D}${sysconfdir}/init.d
     install -d ${D}${base_libdir}/modules/${KERNEL_VERSION}/
     install -m 0755 ${WORKDIR}/aesd-char-driver_init ${D}${sysconfdir}/init.d
-	install -m 0755 ${S}/aesdchar_unload ${D}${base_libdir}/modules/${KERNEL_VERSION}/
-	install -m 0755 ${S}/aesdchar_load ${D}${base_libdir}/modules/${KERNEL_VERSION}/
-	install -m 0755 ${S}/aesdchar.ko ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesd-char-driver/aesdchar_unload ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesd-char-driver/aesdchar_load ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesd-char-driver/aesdchar.ko ${D}${base_libdir}/modules/${KERNEL_VERSION}/
 
 }
