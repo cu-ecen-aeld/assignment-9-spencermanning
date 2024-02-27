@@ -13,10 +13,12 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 
 # Has to be github.com/ and not github.com:
-SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning.git;protocol=ssh;branch=master"
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning.git;protocol=ssh;branch=master \
+			file://aesd-char-driver_init \
+			"
 
 # KEEP THIS UP TO DATE WITH ASY3
-SRCREV = "7be8f968f89d86488ad303fbdbdf62042b59fe1c"
+SRCREV = "9eaa8dd58c90179956fd21cf0a3b25dae9b811aa"
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
 
