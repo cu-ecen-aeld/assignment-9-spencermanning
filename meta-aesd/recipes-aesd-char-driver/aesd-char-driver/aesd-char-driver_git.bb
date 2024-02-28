@@ -44,7 +44,8 @@ do_configure () {
 
 do_compile () {
     # NEED to include the "-C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver" stuff so the aesd-char-driver Makefile can be found!
-    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver
+    oe_runmake
+    # oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver
 }
 
 # KERNEL_VERSION = "5.15.124-yocto-standard"
@@ -61,8 +62,8 @@ do_install () {
 	install -d ${D}${sysconfdir}/init.d
     install -d ${D}${base_libdir}/modules/${KERNEL_VERSION}/
     install -m 0755 ${WORKDIR}/aesd-char-driver_init ${D}${sysconfdir}/init.d
-	install -m 0755 ${S}/aesd-char-driver/aesdchar_unload ${D}${base_libdir}/modules/${KERNEL_VERSION}/
-	install -m 0755 ${S}/aesd-char-driver/aesdchar_load ${D}${base_libdir}/modules/${KERNEL_VERSION}/
-	install -m 0755 ${S}/aesd-char-driver/aesdchar.ko ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesdchar_unload ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesdchar_load ${D}${base_libdir}/modules/${KERNEL_VERSION}/
+	install -m 0755 ${S}/aesdchar.ko ${D}${base_libdir}/modules/${KERNEL_VERSION}/
 
 }
