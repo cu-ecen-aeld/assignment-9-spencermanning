@@ -2,7 +2,7 @@
 # ${sysconfdir} = 	the staged version of /etc/
 # ${PN} =           means the current recipe
 # PV =              Package version
-# ${SRCPV} =        
+# ${SRCPV} =
 
 # See https://git.yoctoproject.org/poky/tree/meta/files/common-licenses
 LICENSE = "MIT"
@@ -14,9 +14,9 @@ SRC_URI = "git://github.com/cu-ecen-aeld/assignments-3-and-later-spencermanning.
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment 3 repo
-SRCREV = "8ec5b5cad97ccab9a95ef0c2ed39450cc61067be"
+SRCREV = "9eaa8dd58c90179956fd21cf0a3b25dae9b811aa"
 
-# This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
+# This sets your staging directory based on WORKDIR, where WORKDIR is defined at
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
 # We reference the "server" directory here to build from the "server" directory
 # in your assignments repo
@@ -48,7 +48,7 @@ do_compile () {
 do_install () {
 	# TODO: Install your binaries/scripts here.
 	# Be sure to install the target directory with install -d first
-	# Yocto variables ${D} and ${S} are useful here, which you can read about at 
+	# Yocto variables ${D} and ${S} are useful here, which you can read about at
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-D
 	# and
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-S
