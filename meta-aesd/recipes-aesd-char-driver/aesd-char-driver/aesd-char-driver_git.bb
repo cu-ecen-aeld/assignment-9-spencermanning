@@ -33,6 +33,8 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME:${PN} = "aesd-char-driver_init"
 
+KERNEL_VERSION = "5.15.124-yocto-standard"
+
 FILES:${PN} += "${sysconfdir}/*"
 FILES:${PN} += "${base_libdir}/modules/${KERNEL_VERSION}/aesdchar_load"
 FILES:${PN} += "${base_libdir}/modules/${KERNEL_VERSION}/aesdchar_unload"
@@ -47,8 +49,6 @@ do_compile () {
     oe_runmake
     # oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver
 }
-
-# KERNEL_VERSION = "5.15.124-yocto-standard"
 
 do_install () {
 	# TODO: Install your binaries/scripts here.
