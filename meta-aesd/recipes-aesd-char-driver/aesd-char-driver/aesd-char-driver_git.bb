@@ -18,7 +18,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-spencermann
 			"
 
 # KEEP THIS UP TO DATE WITH ASY3
-SRCREV = "0ad17c58695dee3af0994304e9f703fe0eb882a2"
+SRCREV = "6ba730bb266573a9540571944c1e8dfce54bf287"
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
 
